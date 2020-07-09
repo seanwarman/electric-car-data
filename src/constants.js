@@ -1,0 +1,5 @@
+module.exports = {
+  REQ_DATA: 'REQ_DATA',
+  REQ_FAILED: 'REQ_FAILED',
+  RECIEVE_DATA: 'RECIEVE_DATA'
+}
