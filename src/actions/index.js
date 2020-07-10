@@ -5,7 +5,7 @@ import {
   RECIEVE_DATA,
 } from '../constants'
 
-export function getData() {
+export function getData(term) {
   return async function(dispatch) {
 
     dispatch(reqData(REQ_DATA))
@@ -13,7 +13,7 @@ export function getData() {
     let result
 
     try {
-      result = await api.get('/data')
+      result = await api.get('/data/' + term)
     } catch (error) {
       console.log('There was an error requesting the data', error)
       return dispatch(reqFailed(error))

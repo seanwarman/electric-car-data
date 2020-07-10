@@ -18,7 +18,8 @@ describe('reducer', () => {
     state: {},
     action: { type: constants.REQ_DATA }
   }, {
-    isPending: true
+    isPending: true,
+    error: undefined
   })
 
   itter('should handle REQ_FAILED', {

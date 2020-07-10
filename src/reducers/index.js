@@ -19,7 +19,8 @@ export function reducer(state = initialState, action) {
     case REQ_DATA:
       return {
         ...state,
-        isPending: true
+        isPending: true,
+        error: undefined
       }
     case REQ_FAILED:
       return {
