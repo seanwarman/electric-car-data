@@ -22,6 +22,8 @@ const app = express()
 
 app.use(cors())
 
+app.use(bodyParser())
+
 app.use((req, res, next) => {
   PrometheusMetrics.requestCounter.inc()
   next()

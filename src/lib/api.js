@@ -6,6 +6,7 @@ const config = {
 
 export default (() => {
   return {
-    get: uri => axios.get(uri, config)
+    get: uri => axios.get(uri, config),
+    put: (uri, data) => axios.put(uri, data, config)
   }
 })()

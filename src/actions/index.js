@@ -5,15 +5,46 @@ import {
   RECIEVE_DATA,
 } from '../constants'
 
-export function getData(term) {
+export function getByFilters(filters) {
+
+  if(!filters) return
+
   return async function(dispatch) {
+
+    return processRequest(dispatch, () => {
+      return api.put('/data', filters)
+    })
+
+  }
+
+}
+
+export function getData(params) {
+
+  if(!params) return
+
+  const [ key ] = Object.keys(params)
+  const value = params[key]
+
+  return async function(dispatch) {
+
+    return processRequest(dispatch, () => {
+      return api.get('/data/' + key + '/' + value)
+    })
+
+  }
+
+}
+
+async function processRequest(dispatch, method) {
+
 
     dispatch(reqData(REQ_DATA))
 
     let result
 
     try {
-      result = await api.get('/data/' + term)
+      result = await method()
     } catch (error) {
       console.log('There was an error requesting the data', error)
       return dispatch(reqFailed(error))
@@ -22,8 +53,8 @@ export function getData(term) {
     return dispatch(receiveData(result.data))
 
 
-  }
 
+  
 }
 
 export const reqData = () => ({ type: REQ_DATA })

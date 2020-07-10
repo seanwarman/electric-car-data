@@ -3,31 +3,60 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import './App.css';
 
-function onTerm(term) {
-  
+function search({
+  year,
+  summary
+}) {
+
+  let params = {}
+
+  if(year?.length > 0)    params.m_szYear     = year
+  if(summary?.length > 0) params.m_szDocTitle = summary
+
+  if(Object.keys(params).length === 0) return
+
+  return params
+
 }
 
 function App({
-  getData
+  getData,
+  getByFilters
 }) {
 
-  const [ term, setTerm ] = useState('')
+  const [ year, setYear ] = useState('')
+  const [ summary, setSummary ] = useState('')
 
   return (
     <div className="App">
 
+      year:
+      <input
+        label="Year"
+        onChange={e => setYear(e.target.value)}
+      >
+      </input>
+
+      summary:
+      <input
+        label="Summary Search"
+        onChange={e => setSummary(e.target.value)}
+      >
+      </input>
+
       <button
         onClick={() => {
-          getData(term)
+          getData(search({
+            summary
+          }))
+          // getByFilters(search({
+          //   year, 
+          //   summary
+          // }))
         }}
       >Get Data</button>
 
-    <input
-      onChange={e => setTerm(e.target.value)}
-    >
-    </input>
-
-    </div>
+  </div>
   )
 }
 
