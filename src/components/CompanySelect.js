@@ -5,11 +5,11 @@ import {
 } from 'antd'
 
 const companies = [
-  'Acura', 'Alfa Romeo', 'Audi', 'BMW', 'Bentley', 'Bugatti', 'Buick', 'Cadillac', 'Chevrolet', 'Chrysler', 'Citroen', 'DS Automobiles',
-  'Dacia', 'Daihatsu', 'Daimler', 'FCA', 'Ferrari', 'Fiat', 'Ford', 'GMC', 'Geely', 'General Motors', 'Genesis', 'Holden',
-  'Honda', 'Hyundai', 'Infiniti', 'Jaguar', 'Jeep', 'Kia', 'Lamborghini', 'Lotus', 'Lancia', 'Land Rover', 'Lexus', 'Lincoln Motor Company', 
-  'London Taxi Company', 'MINI', 'Maserati', 'Mercedes-Benz', 'Nissan', 'Opel', 'PSA', 'Peugeot', 'Porsche', 'RAM', 'Renault', 'Rolls-Royce', 
-  'SMART', 'Samsung', 'Seat', 'Skoda', 'Tesla', 'TATA Motors', 'Toyota', 'Vauxhall', 'Volkswagen', 'Volvo', 'Wuling Motors'
+  'Audi', 'BMW', 'Bentley', 'Buick', 'Cadillac', 'Chrysler', 'Citroen',
+  'Dacia', 'Ferrari', 'Ford', 'Geely', 'General Motors', 'Holden',
+  'Honda', 'Hyundai', 'Infiniti', 'Jaguar', 'Lamborghini', 'Lotus', 'Land Rover',
+  'Maserati', 'Mercedes-Benz', 'Nissan', 'Opel', 'PSA', 'Peugeot', 'Porsche', 'Renault', 'Rolls-Royce', 
+  'Samsung', 'Seat', 'Tesla', 'Toyota', 'Vauxhall', 'Volkswagen', 'Volvo'
 ]
 
 

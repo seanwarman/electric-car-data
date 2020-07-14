@@ -11,6 +11,10 @@ import {
   Tooltip
 } from 'recharts'
 
+const chartStyles = {
+  margin: 'auto'
+}
+
 function convertData(data) {
 
   if(!data) return []
@@ -43,7 +47,10 @@ function Chart({
 }) {
 
   return (
-      <LineChart width={500} height={300}>
+    <>
+      <h2>Activity Over Time</h2>
+
+      <LineChart style={chartStyles} width={500} height={300}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" allowDuplicatedCategory={false} />
         <YAxis dataKey="count" />
@@ -64,6 +71,7 @@ function Chart({
           ))
         }
       </LineChart>
+    </>
   )
 }
 

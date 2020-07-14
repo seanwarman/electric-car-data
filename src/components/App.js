@@ -31,7 +31,7 @@ function App({
   return (
     <div className="App">
 
-      <Layout style={{ height: '100vh' }}>
+      <Layout>
         <Header style={{ postion: 'fixed', zIndex: 1, width: '100%' }}>
 
           <CompanySelect
@@ -40,11 +40,10 @@ function App({
           >
           </CompanySelect>
 
-        </Header>
-        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-
           <SelectCars>
           </SelectCars>
+        </Header>
+        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
 
           <CompanyMap>
           </CompanyMap>
