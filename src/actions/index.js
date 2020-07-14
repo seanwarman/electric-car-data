@@ -4,7 +4,8 @@ import {
   REQ_FAILED,
   RECIEVE_DATA,
   PUSH_DATA,
-  SET_CURRENT_SELECTION
+  SET_CURRENT_SELECTION,
+  REMOVE_SELECTION
 } from '../constants'
 
 export function getByFilters(filters) {
@@ -59,3 +60,4 @@ export const reqFailed = (error) => ({ type: REQ_FAILED, error })
 export const receiveData = (data) => ({ type: RECIEVE_DATA, data })
 export const pushDataToState = (selection, data) => ({type: PUSH_DATA, selection, data})
 export const setCurrentSelection = selection => ({type: SET_CURRENT_SELECTION, selection})
+export const removeSelection = selection => ({type: REMOVE_SELECTION, selection})

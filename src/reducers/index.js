@@ -3,7 +3,8 @@ import {
   REQ_FAILED,
   RECIEVE_DATA,
   PUSH_DATA,
-  SET_CURRENT_SELECTION
+  SET_CURRENT_SELECTION,
+  REMOVE_SELECTION
 } from '../constants'
 
 import initialState from '../initialState'
@@ -50,6 +51,24 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         currentSelection: action.selection
+      }
+    case REMOVE_SELECTION:
+      const selections = state.selections.filter(selection => selection !== action.selection)
+      return {
+        ...state,
+        selections,
+        currentSelection: state.currentSelection !== action.selection ?
+          state.currentSelection
+          :
+          selections[selections.length - 1],
+        data: selections.reduce((obj, key) => {
+
+          return {
+            ...obj,
+            [key]: state.data[key]
+          }
+  
+        }, {})
       }
     default:
       return state

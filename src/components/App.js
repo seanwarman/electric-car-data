@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 import CompanySelect from './CompanySelect'
 import CompanyMap from './CompanyMap'
+import SelectCars from './SelectCars'
 import {
   Layout,
-  Breadcrumb,
-  Radio,
 } from 'antd'
 
 const {
@@ -34,6 +33,7 @@ function App({
 
       <Layout style={{ height: '100vh' }}>
         <Header style={{ postion: 'fixed', zIndex: 1, width: '100%' }}>
+
           <CompanySelect
             disableSelections={selections}
             onChange={selection => getData(selection)}
@@ -42,23 +42,9 @@ function App({
 
         </Header>
         <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Radio.Group 
-              value={currentSelection}
-              buttonStyle="solid"
-            >
-              {
-                selections.map((selection, i) => (
-                  <Radio.Button
-                    value={selection}
-                    onClick={() => setCurrentSelection(selection)}
-                  >
-                    {selection}
-                  </Radio.Button>
-                ))
-              }
-            </Radio.Group>
-          </Breadcrumb>
+
+          <SelectCars>
+          </SelectCars>
 
           <CompanyMap>
           </CompanyMap>
