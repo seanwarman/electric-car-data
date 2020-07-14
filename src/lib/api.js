@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const config = {
-  baseURL: 'http://192.168.1.4:3333'
+  baseURL: 'http://ec2-34-242-206-210.eu-west-1.compute.amazonaws.com'
 }
 
 export default (() => {
