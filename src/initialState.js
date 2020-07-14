@@ -7,7 +7,7 @@ export default (function() {
 
     isPending: true,
     selections: [],
-    currentSelection: 'Citroen',
+    currentSelection: 'Audi',
     data: undefined
   }
 })()

@@ -4,9 +4,6 @@ const cors = require('cors')
 const Prometheus = require('prom-client')
 
 const getData = require('./get.js')
-const filterData = require('./filter.js')
-const getFilters = require('./getFilters.js')
-
 
 const collectDefaultMetrics = Prometheus.collectDefaultMetrics
 
@@ -31,8 +28,6 @@ app.use((req, res, next) => {
 
 
 app.get('/data/:term', getData)
-app.put('/data', filterData)
-app.get('/filters', getFilters)
 
 
 

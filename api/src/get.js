@@ -1,4 +1,56 @@
-const grep = require('./libs/grep')
+const grep = require('./grep')
+
+const batteryTypes = [
+  'Aluminium-air',
+  'Improved lithium-ion',
+  'Lithium-ion',
+  'Madder',
+  'Pupurin',
+  'Graphene',
+  'Brine',
+  'Lead-acid',
+  'Copper Nanowire cathode lithuim',
+  'Nanoscopic copper',
+  'Lithium silicone polymer',
+  'Carbon nanotube electrode lithium',
+  'Lithium air carbon',
+  'Carbon foam',
+  'Carbon foam capacitor hybrid',
+  'Lithium Sulfur Carbon Nanofiber',
+  'Lithium Manganese Composite',
+  'Silicon Carbon Nanocomposite'
+]
+
+function parseParams(item) {
+
+  // Remove the two biggest fields and 
+  // other params that don't appear to be in use...
+  const {
+    m_szDocBody,
+    m_szDocSumamry,
+    m_Topics,
+    m_SocialTags,
+    m_Industry,
+    m_Technology,
+    ...doc
+  } = item
+
+  // Create a new param that searches for matches
+  // in the document body...
+  const m_szBatteryTech = batteryTypes.filter(type => {
+
+    const rgxType = RegExp(type, 'gi')
+  
+    return rgxType.test(m_szDocBody)
+
+  })
+
+  return {
+    ...doc,
+    m_szBatteryTech
+  }
+
+}
 
 module.exports = (req, res) => {
 
@@ -21,21 +73,12 @@ module.exports = (req, res) => {
 
     return res.send(docs.map(item => {
 
-      // Remove the two biggest fields for speed...
-      const {
-        m_szDocBody,
-        m_szDocSumamry,
-        m_Topics,
-        m_SocialTags,
-        m_Industry,
-        m_Technology,
-        ...doc
-      } = item
+      return parseParams(item)
 
-      return doc
     }))
 
   })
 
 
 }
+

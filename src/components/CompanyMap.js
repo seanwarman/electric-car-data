@@ -1,20 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Chart from './Chart'
 import RecentSummaries from './RecentSummaries'
+import BatteryTech from './BatteryTech'
 
 function CompanyMap() {
 
   return (
     <div>
       <Chart />
+      <BatteryTech />
       <RecentSummaries />
     </div>
   )
 }
 
-export default connect(
-  state => ({
-    data: state.data
-  })
-)(CompanyMap)
+export default CompanyMap
