@@ -1,18 +1,11 @@
 import {
   REQ_DATA,
   REQ_FAILED,
-  RECIEVE_DATA
+  RECIEVE_DATA,
+  PUSH_DATA
 } from '../constants'
 
-export const initialState = {
-
-  isPending: false,
-  error: undefined,
-  message: undefined,
-  status: undefined,
-  data: undefined,
-
-}
+import initialState from '../initialState'
 
 export function reducer(state = initialState, action) {
   switch(action.type) {
@@ -35,6 +28,22 @@ export function reducer(state = initialState, action) {
         data: action.data,
         status: 200,
         isPending: false
+      }
+    case PUSH_DATA:
+      return {
+        ...state,
+        isPending: false,
+        data: {
+          ...state.data,
+          [action.selection]: action.data.sort((a,b) => 
+            Number(a.m_zsYear) - Number(b.m_zsYear)
+          )
+        },
+        selections: [
+          ...state.selections,
+          action.selection
+        ],
+        currentSelection: action.selection
       }
     default:
       return state

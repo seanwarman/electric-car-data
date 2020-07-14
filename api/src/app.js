@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 })
 
 
-app.get('/data/:key/:term', getData)
+app.get('/data/:term', getData)
 app.put('/data', filterData)
 app.get('/filters', getFilters)
 

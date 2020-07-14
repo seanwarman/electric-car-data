@@ -1,67 +1,71 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
-import './App.css';
+import CompanySelect from './CompanySelect'
+import CompanyMap from './CompanyMap'
+import {
+  Layout,
+  Breadcrumb
+} from 'antd'
 
-function search({
-  year,
-  summary
-}) {
-
-  let params = {}
-
-  if(year?.length > 0)    params.m_szYear     = year
-  if(summary?.length > 0) params.m_szDocTitle = summary
-
-  if(Object.keys(params).length === 0) return
-
-  return params
-
-}
+const {
+  Header,
+  Footer,
+  Content
+} = Layout
 
 function App({
   getData,
-  getByFilters
+  getByFilters,
+  selections,
+  currentSelection,
 }) {
 
-  const [ year, setYear ] = useState('')
-  const [ summary, setSummary ] = useState('')
+  useEffect(() => {
+
+    getData(currentSelection)
+  
+  }, [getData])
 
   return (
     <div className="App">
 
-      year:
-      <input
-        label="Year"
-        onChange={e => setYear(e.target.value)}
-      >
-      </input>
+      <Layout style={{ height: '100vh' }}>
+        <Header style={{ postion: 'fixed', zIndex: 1, width: '100%' }}>
+          <CompanySelect
+            disableSelections={selections}
+            onChange={selection => getData(selection)}
+          >
+          </CompanySelect>
 
-      summary:
-      <input
-        label="Summary Search"
-        onChange={e => setSummary(e.target.value)}
-      >
-      </input>
+        </Header>
+        <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            {
+              selections.map((selection, i) => (
+                <Breadcrumb.Item key={i}>
+                  {selection}
+                </Breadcrumb.Item>
+              ))
+            }
+          </Breadcrumb>
 
-      <button
-        onClick={() => {
-          getData(search({
-            summary
-          }))
-          // getByFilters(search({
-          //   year, 
-          //   summary
-          // }))
-        }}
-      >Get Data</button>
+          <CompanyMap>
+          </CompanyMap>
 
-  </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Created by Sean Warman</Footer>
+      </Layout>
+
+    </div>
   )
 }
 
 function mapStateToProps(state) {
-  return state
+  return {
+    selections: state.selections,
+    currentSelection: state.currentSelection
+  }
 }
 
 export default connect(

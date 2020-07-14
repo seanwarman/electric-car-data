@@ -3,6 +3,7 @@ import {
   REQ_DATA,
   REQ_FAILED,
   RECIEVE_DATA,
+  PUSH_DATA,
 } from '../constants'
 
 export function getByFilters(filters) {
@@ -19,25 +20,23 @@ export function getByFilters(filters) {
 
 }
 
-export function getData(params) {
+export function getData(selection) {
 
-  if(!params) return
-
-  const [ key ] = Object.keys(params)
-  const value = params[key]
+  if(!selection) return
 
   return async function(dispatch) {
 
-    return processRequest(dispatch, () => {
-      return api.get('/data/' + key + '/' + value)
+    const data = await processRequest(dispatch, () => {
+      return api.get('/data/' + selection)
     })
 
+    return dispatch(pushDataToState(selection, data))
+    
   }
 
 }
 
 async function processRequest(dispatch, method) {
-
 
     dispatch(reqData(REQ_DATA))
 
@@ -50,14 +49,11 @@ async function processRequest(dispatch, method) {
       return dispatch(reqFailed(error))
     }
 
-    return dispatch(receiveData(result.data))
-
-
-
+    return result.data
   
 }
 
 export const reqData = () => ({ type: REQ_DATA })
 export const reqFailed = (error) => ({ type: REQ_FAILED, error })
 export const receiveData = (data) => ({ type: RECIEVE_DATA, data })
-
+export const pushDataToState = (selection, data) => ({type: PUSH_DATA, selection, data})
