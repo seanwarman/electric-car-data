@@ -61,14 +61,15 @@ const BatteryTech = ({
           cy={200}
           innerRadius={100}
           outerRadius={150}
-          fill="#8884d8"
+          fill="#ff9c6e"
           label={({batt}) => batt}
-        />
-        {
-          batts.map((batt, i) => (
-            <Cell key={`cell-${i}`} fill={colors[i % colors.length]} />
-          ))
-        }
+        >
+          {
+            batts.map((batt, i) => (
+              <Cell key={`cell-${i}`} fill={colors[i % colors.length]} />
+            ))
+          }
+        </Pie>
       </PieChart>
     </>
   )

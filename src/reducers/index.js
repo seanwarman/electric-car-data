@@ -2,7 +2,8 @@ import {
   REQ_DATA,
   REQ_FAILED,
   RECIEVE_DATA,
-  PUSH_DATA
+  PUSH_DATA,
+  SET_CURRENT_SELECTION
 } from '../constants'
 
 import initialState from '../initialState'
@@ -43,6 +44,11 @@ export function reducer(state = initialState, action) {
           ...state.selections,
           action.selection
         ],
+        currentSelection: action.selection
+      }
+    case SET_CURRENT_SELECTION:
+      return {
+        ...state,
         currentSelection: action.selection
       }
     default:

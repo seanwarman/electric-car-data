@@ -5,7 +5,8 @@ import CompanySelect from './CompanySelect'
 import CompanyMap from './CompanyMap'
 import {
   Layout,
-  Breadcrumb
+  Breadcrumb,
+  Radio,
 } from 'antd'
 
 const {
@@ -19,6 +20,7 @@ function App({
   getByFilters,
   selections,
   currentSelection,
+  setCurrentSelection
 }) {
 
   useEffect(() => {
@@ -41,13 +43,21 @@ function App({
         </Header>
         <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            {
-              selections.map((selection, i) => (
-                <Breadcrumb.Item key={i}>
-                  {selection}
-                </Breadcrumb.Item>
-              ))
-            }
+            <Radio.Group 
+              value={currentSelection}
+              buttonStyle="solid"
+            >
+              {
+                selections.map((selection, i) => (
+                  <Radio.Button
+                    value={selection}
+                    onClick={() => setCurrentSelection(selection)}
+                  >
+                    {selection}
+                  </Radio.Button>
+                ))
+              }
+            </Radio.Group>
           </Breadcrumb>
 
           <CompanyMap>
