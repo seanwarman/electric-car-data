@@ -1,0 +1,9 @@
+#select-cars .badge {
+  position: absolute;
+  transform: translate(-11px, 0px);
+  z-index: 2;
+}
+
+#select-cars .badge:hover {
+  cursor: pointer;
+}

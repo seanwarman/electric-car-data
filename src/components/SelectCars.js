@@ -8,12 +8,7 @@ import {
   Badge,
   Radio,
 } from 'antd'
-
-const badgeStyle = {
-  position: 'absolute',
-  transform: 'translate(9px, -30px)',
-  zIndex: 2
-}
+import './SelectCars.css'
 
 function onBadge(e, {
   removeSelection,
@@ -32,9 +27,10 @@ const SelectCars = ({
 
 
 <Radio.Group 
+  id="select-cars"
   value={currentSelection}
   buttonStyle="solid"
-  style={{display: 'flex'}}
+  style={{display: 'flex', marginTop: 6}}
 >
   {
     selections.map((selection, i) => (
@@ -51,7 +47,7 @@ const SelectCars = ({
         {
           i > 0 &&
           <Badge 
-            style={badgeStyle}
+            className="badge"
             count={'X'}
             onClick={e => onBadge(e, {
               removeSelection,

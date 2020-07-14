@@ -23,8 +23,7 @@ const batteryTypes = [
 
 function parseParams(item) {
 
-  // Remove the two biggest fields and 
-  // other params that don't appear to be in use...
+  // Drop off some data to lighten the load...
   const {
     m_szDocBody,
     m_szDocSumamry,
@@ -32,6 +31,15 @@ function parseParams(item) {
     m_SocialTags,
     m_Industry,
     m_Technology,
+    m_szDocID,
+    m_szGeol,
+    m_szSourceType,
+    m_Places,
+    m_People,
+    m_BiGrams,
+    m_TriGrams,
+    m_BiCnt,
+    m_TriCnt,
     ...doc
   } = item
 
